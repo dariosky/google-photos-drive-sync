@@ -3,10 +3,10 @@ import os
 from oauth2client import client, tools
 from oauth2client.file import Storage
 
-from .settings import LOCAL_CREDENTIALS, CLIENT_SECRET_FILE, SCOPES, APPLICATION_NAME, flags
+from .settings import CLIENT_SECRET_FILE, SCOPES, APPLICATION_NAME, flags
 
 
-def get_credentials(flags=flags):
+def get_credentials(credentials_path, flags=flags):
     """Gets valid user credentials from storage.
 
     If nothing has been stored, or if the stored credentials are invalid,
@@ -15,7 +15,7 @@ def get_credentials(flags=flags):
     Returns:
         Credentials, the obtained credential.
     """
-    credential_path = os.path.expanduser(LOCAL_CREDENTIALS)
+    credential_path = os.path.expanduser(credentials_path)
     credential_folder = os.path.dirname(credential_path)
     if not os.path.isdir(credential_folder):
         os.makedirs(credential_folder)
